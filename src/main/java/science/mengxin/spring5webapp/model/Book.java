@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * User:    mengxin
@@ -33,7 +35,11 @@ public class Book {
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @Cascade({CascadeType.ALL})
     private Set<Author> authors = new HashSet<>();
+
+    public Book() {
+    }
 
     public Book(String title, String isbn, String publisher) {
         this.title = title;

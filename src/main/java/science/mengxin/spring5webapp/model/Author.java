@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * User:    mengxin
@@ -28,7 +30,11 @@ public class Author {
     private String lastName;
 
     @ManyToMany
+    @Cascade({CascadeType.ALL})
     private Set<Book> books = new HashSet<>();
+
+    public Author() {
+    }
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
